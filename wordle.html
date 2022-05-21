@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="us">
+	<head>
+		<meta charset="UTF-8">
+		<title>Wordle</title>
+		<link rel="stylesheet" href="wordle.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	</head>
+	<body>
+
+		<!-- info dialogue box -->
+		<div id = "infoBox" class = "messageBox">
+			<h1> Wordle </h1>
+
+			<p>
+			Wordle is a fun word-guessing game. You have six attempts to guess a secret word. 
+			<br/>
+			<br/>
+			Enter words with the letter-buttons or keyboard, and press enter to guess.	
+			<br/>
+			<br/>
+			The box will be green if the letter and position is correct. The box will be yellow if the letter is in the word, but not in that position. The box will be gray if the letter does not exist in the word (beyond the boxes already colored).
+			<br/>
+			<br/>
+			Press "solve", and the solver will automatically make guesses for you.
+			</p>
+
+			<button class = "okButton" onclick = "hideInfoBox()">OK</button>
+		</div>
+
+		<!-- settings dialogue box -->
+		<div id = "settingsBox" class = "messageBox">
+			<h1> Settings </h1>
+
+			<form>
+				<label>Solver wordbase:</label><br>
+				<input onclick = "updateWordbase()" type = "radio" name = "wordbase" id = "dictionaryWordsRadio" value = "lang" checked>
+				<label for = "dictionaryWordsRadio">5-letter English word dictionary (21,000 words)</label><br/>
+				<input onclick = "updateWordbase()" type = "radio" name = "wordbase" id = "wordListRadio" value = "list">
+				<label for = "wordListRadio">Official Wordle Word List (2,000 words)</label><br/>
+
+			</form>
+
+			<br/>
+			<button id = "testButton" onclick = "testAllWords()">Test All Words in Word List</button>
+			<p id = "testStatus"></p>
+			<br/>
+			<button class = "okButton" onclick = "hideSettingsBox()">OK</button>
+		</div>
+
+
+
+
+		<!-- regularly displayed page -->
+		<div id="container">
+			<div id ="header">
+				<div id="headerButtons1">
+					<i style="font-size:24px" class="fa">&#xf1d0;</i>
+					<i onclick = "showInfoBox()" id = "infoButton" style="font-size:24px" class="fa">&#xf29c;</i>
+				</div>
+				<div id="title">
+					Wordle
+				</div>
+				<div id="headerButtons2">
+					<button onclick = "changePageToSolver()">Solver</button>
+					<i onclick = "reset()" style="font-size:24px" class="fa">↻</i>
+					<i onclick = "showSettingsBox()" style="font-size:24px" class="fa">&#xf013;</i>
+				</div>
+			</div>
+			<div id="body">
+				<div class="row">
+					<div class="box"></div>
+					<div class="box"></div>
+					<div class="box"></div>
+					<div class="box"></div>
+					<div class="box"></div>
+				</div>
+				<div class="row">
+					<div class="box"></div>
+					<div class="box"></div>
+					<div class="box"></div>
+					<div class="box"></div>
+					<div class="box"></div>
+				</div>
+				<div class="row">
+					<div class="box"></div>
+					<div class="box"></div>
+					<div class="box"></div>
+					<div class="box"></div>
+					<div class="box"></div>
+				</div>
+				<div class="row">
+					<div class="box"></div>
+					<div class="box"></div>
+					<div class="box"></div>
+					<div class="box"></div>
+					<div class="box"></div>
+				</div>
+				<div class="row">
+					<div class="box"></div>
+					<div class="box"></div>
+					<div class="box"></div>
+					<div class="box"></div>
+					<div class="box"></div>
+				</div>
+					<div class="row">
+					<div class="box"></div>
+					<div class="box"></div>
+					<div class="box"></div>
+					<div class="box"></div>
+					<div class="box"></div>
+				</div>
+			</div>
+			<div id="keyboard">
+				<div class="keyboardRow">
+					<button onclick="clickKey('Q')" class="key">Q</button>
+					<button onclick="clickKey('W')" class="key">W</button>
+					<button onclick="clickKey('E')" class="key">E</button>
+					<button onclick="clickKey('R')" class="key">R</button>
+					<button onclick="clickKey('T')" class="key">T</button>
+					<button onclick="clickKey('Y')" class="key">Y</button>
+					<button onclick="clickKey('U')" class="key">U</button>
+					<button onclick="clickKey('I')" class="key">I</button>
+					<button onclick="clickKey('O')" class="key">O</button>
+					<button onclick="clickKey('P')" class="key">P</button>
+				</div>
+				<div class="keyboardRow">
+					<button onclick="clickKey('A')" class="key">A</button>
+					<button onclick="clickKey('S')" class="key">S</button>
+					<button onclick="clickKey('D')" class="key">D</button>
+					<button onclick="clickKey('F')" class="key">F</button>
+					<button onclick="clickKey('G')" class="key">G</button>
+					<button onclick="clickKey('H')" class="key">H</button>
+					<button onclick="clickKey('J')" class="key">J</button>
+					<button onclick="clickKey('K')" class="key">K</button>
+					<button onclick="clickKey('L')" class="key">L</button>
+				</div>
+				<div class="keyboardRow">
+					<button onclick="clickKey('Enter')" id="enter" class="key">ENTER</button>
+					<button onclick="clickKey('Z')" class="key">Z</button>
+					<button onclick="clickKey('X')" class="key">X</button>
+					<button onclick="clickKey('C')" class="key">C</button>
+					<button onclick="clickKey('V')" class="key">V</button>
+					<button onclick="clickKey('B')" class="key">B</button>
+					<button onclick="clickKey('N')" class="key">N</button>
+					<button onclick="clickKey('N')" class="key">N</button>
+					<button onclick="clickKey('M')" class="key">M</button>
+					<button onclick="clickKey('Back')" id="back" class="key"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+				</div>
+        <button onclick="solve()" class = "key" id = "solve">Solve</button>
+			</div>
+		</div>
+	</body>
+	<script src="solving.js"></script>
+	<script src="wordle.js"></script>
+</html>
