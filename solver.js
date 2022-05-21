@@ -73,9 +73,3 @@ function invalidWord(){
 function changePageToGame(){
 	window.location.replace("wordle.html");
 }
-
-/*
- *
- * changing wordbase during solving process?
- *
- */
