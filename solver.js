@@ -71,5 +71,5 @@ function invalidWord(){
 ///ui
 
 function changePageToGame(){
-	window.location.replace("wordle.html");
+	window.location.replace("index.html");
 }
