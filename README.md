@@ -1,10 +1,10 @@
-# WordleSolver
+# Wordle Solver
 [Wordle](https://en.wikipedia.org/wiki/Wordle) and Solver Tool in Javascript
 
-Try it here: https://lucasscharenbroch.github.io/WordleSolver/
+Try it here: https://lucasscharenbroch.github.io/wordle-solver/
 
 # Game
-<image src="GameScreenshot.png">
+<image src="game-screenshot.png">
   
 ## Features
 - Letter buttons and keyboard support
@@ -16,4 +16,4 @@ Try it here: https://lucasscharenbroch.github.io/WordleSolver/
 # Solver
 The solver can be used to generate guesses for a real Wordle game.
 
-<image src="SolverScreenshot.png">
+<image src="solver-screenshot.png">
